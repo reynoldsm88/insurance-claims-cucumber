@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocCycleCodeation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.redhat.insurance.claims</groupId>
@@ -17,6 +18,10 @@
         <dependency>
             <groupId>com.redhat.insurance.claims</groupId>
             <artifactId>insurance-claims-wih</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.redhat.insurance.claims</groupId>
+            <artifactId>insurance-claims-process</artifactId>
         </dependency>
 
         <dependency>
@@ -39,14 +44,12 @@
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-ci</artifactId>
-            <version>${drools.version}</version>
         </dependency>
 
-        <!-- JBPM -->
+		<!-- JBPM -->
         <dependency>
             <groupId>org.jbpm</groupId>
             <artifactId>jbpm-bpmn2</artifactId>
-            <version>${drools.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jbpm</groupId>
@@ -56,6 +59,27 @@
             <groupId>org.jbpm</groupId>
             <artifactId>jbpm-test</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jbpm</groupId>
+            <artifactId>jbpm-human-task-workitems</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jbpm</groupId>
+            <artifactId>jbpm-workitems</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jbpm</groupId>
+            <artifactId>jbpm-human-task-audit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jbpm</groupId>
+            <artifactId>jbpm-human-task-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jbpm</groupId>
+            <artifactId>jbpm-human-task-jpa</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>

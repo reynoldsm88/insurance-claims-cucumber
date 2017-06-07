@@ -9,11 +9,11 @@
     </encoder>
   </appender>
 
-  <logger name="org.jbpm" level="info"/>
-  <logger name="bitronix.tm" level="error"/>
-  <logger name="org.hibernate" level="warn"/>
+  <logger name="org.jbpm" level="INFO"/>
+  <logger name="bitronix.tm" level="ERROR"/>
+  <logger name="org.hibernate" level="WARN"/>
   
-  <root level="info">
+  <root level="INFO">
     <appender-ref ref="consoleAppender" />
   </root>
 

@@ -25,7 +25,9 @@ import org.kie.api.runtime.process.WorkItemHandler;
 import org.kie.api.task.TaskLifeCycleEventListener;
 import org.kie.api.task.TaskService;
 import org.kie.api.task.model.Status;
+import org.kie.api.task.model.Task;
 import org.kie.api.task.model.TaskSummary;
+import org.kie.internal.task.api.model.InternalTaskData;
 
 /**
  * 
@@ -81,12 +83,12 @@ public class TestProcessManager extends JbpmJUnitBaseTestCase {
                 currTask = task;
             }
         }
-        if ( !currTask.equals( null ) ) {
+        if ( currTask != null ) {
             assertTrue( currTask.getName().equals( taskName ) );
             taskService.claim( currTask.getId(), "michael" );
             taskService.start( currTask.getId(), "michael" );
             taskService.complete( currTask.getId(), "michael", data );
-            assertEquals( currTask.getStatus(), Status.Completed );
+            assertTaskCompleted( currTask.getId() );
         }
     }
 
@@ -111,6 +113,13 @@ public class TestProcessManager extends JbpmJUnitBaseTestCase {
         auditLogName = null;
         this.processInstanceId = Integer.MIN_VALUE;
         event = null;
+    }
+
+    private void assertTaskCompleted( long taskId ) {
+        TaskService taskService = getRuntimeEngine().getTaskService();
+        Task t = taskService.getTaskById( taskId );
+        Status status = ( (InternalTaskData) t.getTaskData() ).getStatus();
+        assertEquals( status, Status.Completed );
     }
 
     /**

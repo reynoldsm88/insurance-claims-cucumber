@@ -5,5 +5,5 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith( Cucumber.class )
-@CucumberOptions( plugin = "json:target/wip-report.json", glue = "com.redhat.insurance.claims", features = "src/test/resources/features", tags = { "@wip" } )
+@CucumberOptions( plugin = "json:target/wip-report.json", glue = "com.redhat.insurance.claims.steps", features = "src/test/resources/features", tags = { "@wip" } )
 public class RunWorkInProgressScenarios {}

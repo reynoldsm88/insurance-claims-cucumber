@@ -1,17 +1,17 @@
 package com.redhat.insurance.claim.context;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-import org.kie.api.KieServices;
 import org.kie.api.runtime.process.WorkItemHandler;
 
 import com.redhat.insurance.claims.config.Configuration;
 import com.redhat.insurnace.claims.bpm.TestProcessManager;
 
-public class InsuranceClaimCucumberContext {
+public class InsuranceClaimsCucumberContext {
 
-    private static final KieServices KIE_SERVICES = KieServices.Factory.get();
     // TODO - is there a better way to do this than have a static 
     private static final TestProcessManager processManager = new TestProcessManager();
 
@@ -19,34 +19,38 @@ public class InsuranceClaimCucumberContext {
 
     private String scenario;
 
-    private Map<String, WorkItemHandler> handlers;
-
-    public void reset() {
-
-        processManager.reset();
-    }
-
-    public Collection<Object> getAllFacts() {
-        return null;
-    }
-
-    public Map<String, Object> getProcessVariables() {
-        return null;
-    }
-
     public void startProcess( String processName ) {
         if ( Configuration.isAuditLogEnabled() ) {
             processManager.enableAuditLog( scenario );
         }
-        processManager.startProcess( processName, getProcessVariables(), handlers );
+        processManager.startProcess( processName, createProcessVariables(), createTestWorkItemHandlers() );
     }
 
     public void completeTask( String taskName, Map<String, Object> data ) {
         processManager.completeTask( taskName, data );
     }
 
+    public void reset() {
+        this.scenario = null;
+        processManager.reset();
+    }
+
     public Object getProcessVariable( String name ) {
         return processManager.getProcessVariable( name );
+    }
+    
+    private Collection<Object> getAllFacts() {
+        return Collections.EMPTY_LIST;
+    }
+
+    private Map<String, Object> createProcessVariables() {
+        Map<String, Object> variables = new HashMap<String, Object>();
+        return variables;
+    }
+
+    private Map<String, WorkItemHandler> createTestWorkItemHandlers() {
+        Map<String, WorkItemHandler> handlers = new HashMap<String, WorkItemHandler>();
+        return handlers;
     }
 
     public String getScenario() {
