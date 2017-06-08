@@ -8,6 +8,7 @@ import java.util.Map;
 import org.kie.api.runtime.process.WorkItemHandler;
 
 import com.redhat.insurance.claims.config.Configuration;
+import com.redhat.insurance.claims.model.Policy;
 import com.redhat.insurnace.claims.bpm.TestProcessManager;
 
 public class InsuranceClaimsCucumberContext {
@@ -18,6 +19,7 @@ public class InsuranceClaimsCucumberContext {
     // Human task names
 
     private String scenario;
+    private Policy policy;
 
     public void startProcess( String processName ) {
         if ( Configuration.isAuditLogEnabled() ) {
@@ -38,13 +40,14 @@ public class InsuranceClaimsCucumberContext {
     public Object getProcessVariable( String name ) {
         return processManager.getProcessVariable( name );
     }
-    
+
     private Collection<Object> getAllFacts() {
         return Collections.EMPTY_LIST;
     }
 
     private Map<String, Object> createProcessVariables() {
         Map<String, Object> variables = new HashMap<String, Object>();
+        variables.put( "policy", null );
         return variables;
     }
 
@@ -59,5 +62,13 @@ public class InsuranceClaimsCucumberContext {
 
     public void setScenario( String scenario ) {
         this.scenario = scenario;
+    }
+
+    public Policy getPolicy() {
+        return this.policy;
+    }
+
+    public void setPolicy( Policy policy ) {
+        this.policy = policy;
     }
 }
